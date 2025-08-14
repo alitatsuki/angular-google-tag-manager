@@ -4,10 +4,14 @@ name: Publish Package
 on:
   push:
     branches:
-      - main
+      - master
+  pull_request:
+    branches:
+      - master
 
 jobs:
-  build-and-test:
+  build:
+    name: Build
     runs-on: ubuntu-latest
     
     steps:
@@ -32,7 +36,8 @@ jobs:
         cat dist/angular-google-tag-manager/package.json
 
   publish:
-    needs: build-and-test
+    name: Publish
+    needs: build
     runs-on: ubuntu-latest
     
     steps:
