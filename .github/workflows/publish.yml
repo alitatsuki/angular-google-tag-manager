@@ -61,8 +61,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN  }}
           strategy: upgrade
-          registry: 'https://npm.pkg.github.com/alitatsuki'
-          package: 'dist/angular-google-tag-manager'
+          registry: 'https://npm.pkg.github.com'
 
       - name: Create GitHub Release
         uses: actions/create-release@v1
