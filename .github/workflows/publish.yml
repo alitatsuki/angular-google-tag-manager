@@ -57,10 +57,13 @@ jobs:
     - name: Build library
       run: npm run build:lib:prod
       
-    - name: Publish to npm
-      run: npm publish dist/angular-google-tag-manager --access public
-      env:
-        NODE_AUTH_TOKEN: ${{ secrets.TOKEN }}
+    - name: Publish package if the version has been updated
+      uses: JS-DevTools/npm-publish@v3
+      with:
+        token: ${{ secrets.TOKEN }}
+        strategy: upgrade
+        registry: "https://npm.pkg.github.com"
+        package: "dist/angular-google-tag-manager"
         
     - name: Create GitHub Release
       uses: actions/create-release@v1
