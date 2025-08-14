@@ -59,10 +59,9 @@ jobs:
       - name: Publish package
         uses: JS-DevTools/npm-publish@v3
         with:
-          token: ${{ secrets.TOKEN  }}
+          token: ${{ secrets.GITHUB_TOKEN  }}
           strategy: upgrade
           registry: 'https://npm.pkg.github.com'
-          package: 'dist/angular-google-tag-manager'
 
       - name: Create GitHub Release
         uses: actions/create-release@v1
