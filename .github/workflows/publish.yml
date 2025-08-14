@@ -13,63 +13,63 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
-    
+
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-      
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '24'
-        cache: 'npm'
-        
-    - name: Install dependencies
-      run: npm ci
-          
-    - name: Build library
-      run: npm run build:lib:prod
-      
-    - name: Verify build output
-      run: |
-        ls -la dist/angular-google-tag-manager/
-        cat dist/angular-google-tag-manager/package.json
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build library
+        run: npm run build:lib:prod
+
+      - name: Verify build output
+        run: |
+          ls -la dist/angular-google-tag-manager/
+          cat dist/angular-google-tag-manager/package.json
 
   publish:
     name: Publish
     needs: build
     runs-on: ubuntu-latest
-    
+
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-      
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '24'
-        cache: 'npm'
-        
-    - name: Install dependencies
-      run: npm ci
-      
-    - name: Build library
-      run: npm run build:lib:prod
-      
-    - name: Publish package
-      uses: JS-DevTools/npm-publish@v3
-      with:
-        token: ${{ secrets.TOKEN }}
-        strategy: upgrade
-        registry: "https://npm.pkg.github.com/alitatsuki"
-        package: "dist/angular-google-tag-manager"
-        
-    - name: Create GitHub Release
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.TOKEN }}
-      with:
-        tag_name: ${{ github.ref }}
-        release_name: Release ${{ github.ref }}
-        draft: false
-        prerelease: false
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build library
+        run: npm run build:lib:prod
+
+      - name: Publish package
+        uses: JS-DevTools/npm-publish@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN  }}
+          strategy: upgrade
+          registry: 'https://npm.pkg.github.com/alitatsuki'
+          package: 'dist/angular-google-tag-manager'
+
+      - name: Create GitHub Release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
