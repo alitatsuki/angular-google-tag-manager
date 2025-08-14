@@ -4,7 +4,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/alitatsuki/angular-google-tag-manager"
+    "url": "git+https://github.com/alitatsuki/angular-google-tag-manager.git"
   },
   "description": "A service library for integrate google tag manager in your angular project",
   "author": "marcozuccaroli@gmail.com",
