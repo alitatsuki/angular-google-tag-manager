@@ -57,7 +57,7 @@ jobs:
     - name: Build library
       run: npm run build:lib:prod
       
-    - name: Publish package if the version has been updated
+    - name: Publish package
       uses: JS-DevTools/npm-publish@v3
       with:
         token: ${{ secrets.TOKEN }}
