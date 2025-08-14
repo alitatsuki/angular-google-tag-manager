@@ -64,12 +64,11 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{secrets.TOKEN}}
 
-      - name: Create GitHub Release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+      - name: Tag/Release on Push Action
+        id: release_step
+        uses: rymndhng/release-on-push-action@v0.28.0
         with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
-          draft: false
-          prerelease: false
+          bump_version_scheme: patch
+          tag_prefix: v
+          use_github_release_notes: true
+
