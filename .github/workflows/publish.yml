@@ -57,11 +57,12 @@ jobs:
         run: npm run build:lib:prod
 
       - name: Publish package
-        uses: JS-DevTools/npm-publish@v3
-        with:
-          token: ${{ secrets.TOKEN  }}
-          strategy: upgrade
-          registry: 'https://npm.pkg.github.com'
+        run: |
+          echo "@username:registry=https://npm.pkg.github.com" >> .npmrc
+          echo "//npm.pkg.github.com/:_authToken=${{ secrets.TOKEN }}" >> .npmrc
+          npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.TOKEN}}
 
       - name: Create GitHub Release
         uses: actions/create-release@v1
