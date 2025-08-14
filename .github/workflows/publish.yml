@@ -65,6 +65,7 @@ jobs:
           npm publish
         env:
           NODE_AUTH_TOKEN: $GITHUB_TOKEN
+        working-directory: dist/
 
       - name: Tag/Release on Push Action
         id: release_step
