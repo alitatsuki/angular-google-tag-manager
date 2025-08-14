@@ -157,6 +157,38 @@ See also the list of [contributors](https://github.com/mzuccaroli/angular-google
 
 This project is licensed under the MIT License
 
+## Development
+
+### GitHub Actions Workflows
+
+This project includes automated CI/CD workflows:
+
+#### CI Workflow
+- Runs on every push to `main` branch and pull requests
+- Executes linting, tests, and builds
+- Ensures code quality before merging
+
+#### Publish Workflow
+- Triggers when a new version tag is pushed (e.g., `v1.12.0`)
+- Automatically publishes the package to npm
+- Creates a GitHub release
+- Requires `NPM_TOKEN` secret to be configured
+
+### Setting up NPM Token
+
+To enable automatic publishing, add your npm token as a GitHub secret:
+
+1. Generate an npm access token at [npmjs.com](https://www.npmjs.com/settings/tokens)
+2. Go to your GitHub repository → Settings → Secrets and variables → Actions
+3. Add a new secret named `NPM_TOKEN` with your npm token value
+
+### Publishing a New Version
+
+1. Update the version in `package.json` and `projects/angular-google-tag-manager/package.json`
+2. Commit and push your changes
+3. Create and push a new tag: `git tag v1.12.0 && git push origin v1.12.0`
+4. The workflow will automatically build, test, and publish the package
+
 ## Acknowledgments
 
 - Thanks to PurpleBooth for the [Readme Template](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2)
