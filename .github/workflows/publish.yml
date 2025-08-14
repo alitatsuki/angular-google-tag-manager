@@ -59,7 +59,7 @@ jobs:
       - name: Publish package
         uses: JS-DevTools/npm-publish@v3
         with:
-          token: ${{ secrets.GITHUB_TOKEN  }}
+          token: ${{ secrets.TOKEN  }}
           strategy: upgrade
           registry: 'https://npm.pkg.github.com'
 
