@@ -1,6 +1,6 @@
 {
   "name": "@alitatsuki/angular-google-tag-manager",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "license": "MIT",
   "description": "A service library for integrate google tag manager in your angular project",
   "author": "marcozuccaroli@gmail.com",
