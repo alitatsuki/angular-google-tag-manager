@@ -59,10 +59,10 @@ jobs:
       - name: Publish package
         run: |
           echo "@username:registry=https://npm.pkg.github.com" >> .npmrc
-          echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" >> .npmrc
+          echo "//npm.pkg.github.com/:_authToken=${{ secrets.TOKEN }}" >> .npmrc
           npm publish
         env:
-          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          NODE_AUTH_TOKEN: ${{secrets.TOKEN}}
 
       - name: Create GitHub Release
         uses: actions/create-release@v1
