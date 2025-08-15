@@ -58,14 +58,17 @@ jobs:
       - name: Build library
         run: npm run build:lib:prod
 
-      - name: Publish package
+      - name: Generate the runtime configuration file
         run: |
           echo "@alitatsuki:registry=https://npm.pkg.github.com" >> .npmrc
           echo "//npm.pkg.github.com/:_authToken=$GITHUB_TOKEN" >> .npmrc
-          npm publish
-        env:
-          NODE_AUTH_TOKEN: $GITHUB_TOKEN
-        working-directory: ./dist/angular-google-tag-manager
+
+      - name: Publish package if the version has been updated
+        uses: JS-DevTools/npm-publish@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          registry: "https://npm.pkg.github.com"
+          package: ./dist/angular-google-tag-manager
 
       - name: Tag/Release on Push Action
         id: release_step
